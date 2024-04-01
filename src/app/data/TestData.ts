@@ -26,7 +26,7 @@ export class TestData{
             id: 1,
             title: 'Chest Day',
             priority: TestData.priorities[3],
-            completed: false,
+            completed: true,
             category: TestData.categories[2],
             date: new Date('2024-03-16')
         },
@@ -35,14 +35,12 @@ export class TestData{
             title: 'Lab work',
             priority: TestData.priorities[2],
             completed: false,
-            category: TestData.categories[1],
-            date: new Date('2024-03-18')
         },
         {
             id: 3,
             title: 'Rent Day',
             priority: TestData.priorities[1],
-            completed: false,
+            completed: true,
             category: TestData.categories[5],
             date: new Date('2024-03-17')
         },
@@ -57,7 +55,6 @@ export class TestData{
         {
             id: 5,
             title: 'Play football',
-            priority: TestData.priorities[4],
             completed: false,
             category: TestData.categories[3],
             date: new Date('2024-03-14')

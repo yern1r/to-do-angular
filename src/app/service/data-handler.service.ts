@@ -15,7 +15,6 @@ export class DataHandlerService {
 
 
   constructor() { }
-
   // getCategories(): Category[]{
   //   return TestData.categories;
   // }
@@ -31,4 +30,3 @@ export class DataHandlerService {
     this.taskSubject.next(tasks);
   }
 }
- 
