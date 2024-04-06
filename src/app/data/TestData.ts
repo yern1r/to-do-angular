@@ -65,6 +65,54 @@ export class TestData{
             completed: false,
             category: TestData.categories[0],
             date: new Date('2024-03-13')
+        },
+        {
+            id: 7,
+            title: 'Task 7',
+            completed: false,
+            category: TestData.categories[1],
+            date: new Date('2024-03-18')
+        },
+        {
+            id: 8,
+            title: 'Task 8',
+            priority: TestData.priorities[3],
+            completed: false,
+            category: TestData.categories[2],
+            date: new Date('2024-03-19')
+        },
+        {
+            id: 9,
+            title: 'Task 9',
+            priority: TestData.priorities[2],
+            completed: false,
+            category: TestData.categories[3],
+            date: new Date('2024-03-20')
+        },
+        {
+            id: 10,
+            title: 'Task 10',
+            priority: TestData.priorities[1],
+            completed: false,
+            category: TestData.categories[4],
+            date: new Date('2024-03-21')
+        },
+        {
+            id: 11,
+            title: 'Task 11',
+            priority: TestData.priorities[0],
+            completed: false,
+            category: TestData.categories[5],
+            date: new Date('2024-03-22')
+        },
+        // Add more tasks similarly
+        {
+            id: 36,
+            title: 'Task 36',
+            priority: TestData.priorities[2],
+            completed: false,
+            category: TestData.categories[2],
+            date: new Date('2024-04-05')
         }
     ]
 }
