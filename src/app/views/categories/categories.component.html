@@ -9,7 +9,7 @@
 
         <li class="nav-item pointer" 
             *ngFor="let category of categories" 
-            (click) = "showTaskByCategory(category)"
+            
             [class.active]="category === selectedCategory"
             >
             
