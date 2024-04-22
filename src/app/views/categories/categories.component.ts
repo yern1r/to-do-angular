@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DataHandlerService } from '../../service/data-handler.service';
 import { Category } from '../../model/Category';
 
@@ -9,8 +9,14 @@ import { Category } from '../../model/Category';
 })
 export class CategoriesComponent implements OnInit{
 
- categories!: Category[];
- selectedCategory!: Category;
+  @Input()
+  categories!: Category[];
+
+  //vybrali category iz spiska
+  @Output()
+  selectCategory = new EventEmitter<Category>();
+
+  selectedCategory!: Category;
 
   constructor(
     private dataHandler: DataHandlerService
@@ -21,16 +27,27 @@ export class CategoriesComponent implements OnInit{
   //method called automatically after init of component
   ngOnInit() {
 
-    this.dataHandler.getAllCategories().subscribe((categories => this.categories = categories));
+    // this.dataHandler.getAllCategories().subscribe((categories => this.categories = categories));
 
     // this.dataHandler.categoriesSubject.subscribe((categories => this.categories = categories));
     // this.categories = this.dataHandler.getCategories();
     // console.log(this.categories);
   }
 
-  // showTaskByCategory(category : Category){
-  //   this.selectedCategory = category;
-  //   this.dataHandler.fillTasksByCategory(category);
-  // }
+  showTaskByCategory(category : Category){
+    // this.selectedCategory = category;
+    // this.dataHandler.fillTasksByCategory(category);
+
+    //esli ne izmenilos; znachenie, nichego ne deleat'(chtoby lishnyi raz ne delat' zaproz dannyx)
+    if(this.selectedCategory === category){
+      return;
+    }
+
+    //soxranyaem vybranuu category
+    this.selectedCategory = category;
+
+    //vyzyvaem vnewniy obrabotchik i peredaem tuda vybrannuu category
+    this.selectCategory.emit(this.selectedCategory);
+  }
 
 }

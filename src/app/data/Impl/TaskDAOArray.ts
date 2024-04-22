@@ -1,6 +1,6 @@
 import { Observable, of } from "rxjs";
 import { Category } from "../../model/Category";
-import { Priority } from "../../model/Priority";
+import { Priority } from '../../model/Priority';
 import { Task } from "../../model/Task";
 import { TaskDAO } from "../Interface/TaskDAO";
 import { TestData } from "../TestData";
@@ -11,7 +11,7 @@ export class TaskDAOArray implements TaskDAO{
     }
 
     search(category: Category, searchText: string, status: boolean, priority: Priority): Observable<Task[]> {
-        throw new Error("Method not implemented.");
+       return of(this.searchTasks(category, searchText, status, priority))
     }
     getCompletedCountInCategory(category: Category): Observable<number> {
         throw new Error("Method not implemented.");
@@ -30,6 +30,16 @@ export class TaskDAOArray implements TaskDAO{
 
     getAll(): Observable<Task[]> {
        return of (TestData.tasks);
+    }
+
+    private searchTasks(category: Category, searchText: string, status:boolean, priority: Priority): Task[]{
+        let allTasks = TestData.tasks;
+
+        if (category != null){
+            allTasks = allTasks.filter(todo => todo.category === category)
+        }
+
+        return allTasks; //filtered array
     }
 
     //---------------------------------------------//

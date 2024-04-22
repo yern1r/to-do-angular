@@ -8,8 +8,8 @@
       <ul class="nav">
 
         <li class="nav-item pointer" 
+            (click)="showTaskByCategory(category)"
             *ngFor="let category of categories" 
-            
             [class.active]="category === selectedCategory"
             >
             

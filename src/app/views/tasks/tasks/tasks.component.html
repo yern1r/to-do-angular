@@ -2,7 +2,7 @@
   <div class="card-header card-header-warning">
     <h4 class="card-title">List of tasks</h4>
   </div>
-  <div class="card-body table-responsive" *ngIf="tasks.length > 0">
+  <div class="card-body table-responsive" *ngIf="tasks && tasks.length > 0">
     <table [dataSource]="dataSource" mat-table matSort>
       <!-- color of priority-->
       <ng-container matColumnDef="color">
@@ -82,7 +82,7 @@
 
   </div>
 
-  <div *ngIf="tasks.length == 0">
+  <div *ngIf="tasks && tasks.length == 0">
     <p class="not-found">
         Nothing found
     </p>
