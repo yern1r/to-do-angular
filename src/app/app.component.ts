@@ -9,6 +9,7 @@ import { Category } from './model/Category';
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
+
   title = 'to-do-app';
   tasks!: Task[];
   categories!: Category[];
@@ -24,7 +25,7 @@ export class AppComponent implements OnInit {
     // this.dataHandler.getAllTasks().subscribe(tasks => this.tasks = tasks);
 
     this.dataHandler.getAllCategories().subscribe((categories => this.categories = categories));
-    this.onSelectCategory(null);//show all tasks
+    // this.onSelectCategory(null);//show all tasks
 
   }
 
@@ -33,13 +34,21 @@ export class AppComponent implements OnInit {
     this.selectedCategory = category;
 
     this.dataHandler.searchTasks(
-      this.selectedCategory,
-      null,
-      null,
-      null
+      this.selectedCategory
     ).subscribe((tasks)=>{
       this.tasks = tasks;
-    })
+    });
   }
 
+  onUpdateTask(task: Task) {
+
+    this.dataHandler.updateTask(task).subscribe(() => {
+      this.dataHandler.searchTasks(
+        this.selectedCategory
+      ).subscribe(tasks => {
+        this.tasks = tasks;
+      });
+    });
+    console.log(task);
+    }
 }

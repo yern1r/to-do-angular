@@ -1,0 +1,25 @@
+.container-dialog {
+  display: grid;
+  justify-content: center;
+  /* align-items: center; */
+  /* width: 100%; */
+  position: fixed;
+  /* height: 100%; */
+  z-index: 5555;
+    /* top: 303px;
+    right: 350px; */
+    /* position: absolute !important; */
+    top: 50% !important;
+    right: 40% !important; 
+    background-color:white;
+}
+
+.dialog-content {
+  width: 200px;
+  height: 400px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+}

@@ -10,9 +10,12 @@ export class TaskDAOArray implements TaskDAO{
         throw new Error("Method not implemented.");
     }
 
-    search(category: Category, searchText: string, status: boolean, priority: Priority): Observable<Task[]> {
-       return of(this.searchTasks(category, searchText, status, priority))
-    }
+    // search(category: Category, searchText: string, status: boolean, priority: Priority): Observable<Task[]> {
+    //    return of(this.searchTasks(category, searchText, status, priority))
+    // }
+    search(category: Category): Observable<Task[]> {
+        return of(this.searchTasks(category))
+     }
     getCompletedCountInCategory(category: Category): Observable<number> {
         throw new Error("Method not implemented.");
     }
@@ -32,7 +35,18 @@ export class TaskDAOArray implements TaskDAO{
        return of (TestData.tasks);
     }
 
-    private searchTasks(category: Category, searchText: string, status:boolean, priority: Priority): Task[]{
+    // private searchTasks(category: Category, searchText: string, status:boolean, priority: Priority): Task[]{
+    //     let allTasks = TestData.tasks;
+
+    //     if (category != null){
+    //         allTasks = allTasks.filter(todo => todo.category === category)
+    //     }
+
+    //     return allTasks; //filtered array
+    // }
+
+
+    private searchTasks(category: Category): Task[]{
         let allTasks = TestData.tasks;
 
         if (category != null){
@@ -50,9 +64,17 @@ export class TaskDAOArray implements TaskDAO{
     delete(id: number): Observable<Task> {
         throw new Error("Method not implemented.");
     }
-    update(obj: Task): Observable<Task> {
-        throw new Error("Method not implemented.");
+    
+    update(task: Task): Observable<Task> {
+        const taskTmp = TestData.tasks.find(t => t.id === task.id);
+        if (taskTmp !== undefined) {
+            TestData.tasks.splice(TestData.tasks.indexOf(taskTmp), 1, task);
+        }
+    
+        return of(task);
     }
+    
+
     add(obj: Task): Observable<Task> {
         throw new Error("Method not implemented.");
     }

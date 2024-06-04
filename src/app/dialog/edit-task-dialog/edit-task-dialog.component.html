@@ -1,0 +1,40 @@
+<div class="container-dialog">
+    <mat-dialog-content>
+      <!-- Your dialog content here -->
+      <p mat-dialog-title>{{ dialogTitle }}</p>
+  
+      <mat-form-field>
+        <mat-label>Name of task (necessary)</mat-label>
+        <input
+          #inputTitle
+          matInput
+          [(ngModel)]="tmpTitle"
+          (keydown.enter)="onConfirm()"
+        />
+        <button
+          *ngIf="tmpTitle.trim().length > 0"
+          mat-icon-button
+          matSuffix
+          aria-label="Clear"
+          (click)="tmpTitle = '' "
+          class="size25"
+        >
+          <mat-icon>clear</mat-icon>
+        </button>
+      </mat-form-field>
+    </mat-dialog-content>
+  
+    <mat-dialog-actions>
+      <!-- Your dialog actions here -->
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onConfirm()"
+        [disabled]="inputTitle.value.trim().length == 0"
+      >
+        Save
+      </button>
+      <button mat-raised-button (click)="onCancel()">Cancel</button>
+    </mat-dialog-actions>
+  </div>
+  

@@ -1,9 +1,9 @@
 export class Priority {
-    id: number;
-    title: string;
-    color: string;
+    id?: number | null;
+    title?: string | null;
+    color?: string | null;
 
-    constructor(id : number, title : string, color : string){
+    constructor(id?: number | null, title?: string | null, color?: string | null) {
         this.id = id;
         this.title = title;
         this.color = color;

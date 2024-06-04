@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild, viewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild, viewChild } from '@angular/core';
 import { DataHandlerService } from '../../../service/data-handler.service';
 import { Task } from '../../../model/Task';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { CategoriesComponent } from '../../categories/categories.component';
+import { EditTaskDialogComponent } from '../../../dialog/edit-task-dialog/edit-task-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-tasks',
@@ -32,10 +33,12 @@ export class TasksComponent implements OnInit {
     this.fillTable();
   }
 
-
+  @Output()
+  updateTask = new EventEmitter<Task>();
 
   constructor(
-    private dataHandler : DataHandlerService
+    private dataHandler : DataHandlerService,
+    private dialog : MatDialog
   ){
 
   }
@@ -57,7 +60,7 @@ export class TasksComponent implements OnInit {
   // } 
 
   //show tasks with application of all current conditions 
-  private fillTable(){
+  private fillTable() : void {
 
     //check for = null
     if(!this.dataSource){
@@ -91,7 +94,7 @@ export class TasksComponent implements OnInit {
     }
   }
 
-   getPriorityColor(task : Task) {
+   getPriorityColor(task : Task) : string{
       if(task.completed){
         return '#F8F9FA';
       }
@@ -113,5 +116,27 @@ export class TasksComponent implements OnInit {
     this.dataSource.paginator = this.paginator; // обновить компонент постраничности (кол-во записей,)
   }
 
+  // dialog of editting for adding tasks
+  openEditTaskDialog(task : Task): void {
+
+    //open dialog
+    const dialogRef = this.dialog.open(EditTaskDialogComponent, 
+      {
+        data: [task, 'Editting the task'], 
+        autoFocus: false
+      }); 
+
+    
+    dialogRef.afterClosed().subscribe( result => {
+      //dealing with results
+
+      if (result as Task){
+        this.updateTask.emit(task);
+        return;
+      }
+    })
+
+    // this.updateTask.emit(task);
+  }
 
 }
