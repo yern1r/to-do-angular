@@ -11,3 +11,11 @@
 .size25{
     font-size:25px !important;
 }
+
+.mat-dialog-container{
+    padding:40px !important;
+}
+
+.mat-form-field{
+    width: 100%;
+}

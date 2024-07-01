@@ -45,7 +45,7 @@ export class TasksComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.dataHandler.getAllTasks().subscribe(tasks => this.tasks = tasks)
+    this.dataHandler.getAllTasks().subscribe(tasks => this.tasks = tasks)
 
     // this.dataHandler.taskSubject.subscribe(tasks => this.tasks = tasks);
     // console.log(this.tasks)

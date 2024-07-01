@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule, MatIconButton } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -34,12 +36,15 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatButtonModule,
     MatIconButton,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule,
+    MatOptionModule
   ],
   providers: [],
-  // entryComponents: [
-  //   EditTaskDialogComponent
-  // ],
+  //@ts-ignore
+  entryComponents: [
+    EditTaskDialogComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

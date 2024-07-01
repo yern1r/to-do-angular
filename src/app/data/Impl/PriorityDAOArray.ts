@@ -1,10 +1,11 @@
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Priority } from '../../model/Priority';
 import { PriorityDAO } from '../Interface/PriorityDAO';
+import { TestData } from '../TestData';
 export class PriorityDAOArray implements PriorityDAO {
     
     getAll(): Observable<Priority[]> {
-        throw new Error('Method not implemented.');
+       return of (TestData.priorities);
     }
     get(id: number): Observable<Priority> {
         throw new Error('Method not implemented.');
