@@ -34,13 +34,13 @@ export class DataHandlerService {
     return this.priorityDaoArray.getAll();
   }
 
-  //searching tasks by params
-  // searchTasks(category: Category, searchText: string, status: boolean, priority: Priority): Observable<Task[]>{
-  //   return this.TaskDaoArray.search(category,searchText,status,priority);
-  // }
-  searchTasks(category: Category): Observable<Task[]>{
-    return this.TaskDaoArray.search(category );
+  // searching tasks by params
+  searchTasks(category: Category, searchText: string, status: boolean, priority: Priority): Observable<Task[]>{
+    return this.TaskDaoArray.search(category,searchText,status,priority);
   }
+  // searchTasks(category: Category): Observable<Task[]>{
+  //   return this.TaskDaoArray.search(category );
+  // }
 
   updateTask(task:Task): Observable<Task>{
     return this.TaskDaoArray.update(task);

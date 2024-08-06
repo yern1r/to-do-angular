@@ -10,12 +10,12 @@ export class TaskDAOArray implements TaskDAO{
         throw new Error("Method not implemented.");
     }
 
-    // search(category: Category, searchText: string, status: boolean, priority: Priority): Observable<Task[]> {
-    //    return of(this.searchTasks(category, searchText, status, priority))
-    // }
-    search(category: Category): Observable<Task[]> {
-        return of(this.searchTasks(category))
-     }
+    search(category: Category, searchText: string, status: boolean, priority: Priority): Observable<Task[]> {
+       return of(this.searchTasks(category, searchText, status, priority))
+    }
+    // search(category: Category): Observable<Task[]> {
+    //     return of(this.searchTasks(category))
+    //  }
     getCompletedCountInCategory(category: Category): Observable<number> {
         throw new Error("Method not implemented.");
     }
@@ -35,18 +35,7 @@ export class TaskDAOArray implements TaskDAO{
        return of (TestData.tasks);
     }
 
-    // private searchTasks(category: Category, searchText: string, status:boolean, priority: Priority): Task[]{
-    //     let allTasks = TestData.tasks;
-
-    //     if (category != null){
-    //         allTasks = allTasks.filter(todo => todo.category === category)
-    //     }
-
-    //     return allTasks; //filtered array
-    // }
-
-
-    private searchTasks(category: Category): Task[]{
+    private searchTasks(category: Category, searchText: string, status:boolean, priority: Priority): Task[]{
         let allTasks = TestData.tasks;
 
         if (category != null){
@@ -55,6 +44,17 @@ export class TaskDAOArray implements TaskDAO{
 
         return allTasks; //filtered array
     }
+
+
+    // private searchTasks(category: Category): Task[]{
+    //     let allTasks = TestData.tasks;
+
+    //     if (category != null){
+    //         allTasks = allTasks.filter(todo => todo.category === category)
+    //     }
+
+    //     return allTasks; //filtered array
+    // }
 
     //---------------------------------------------//
 

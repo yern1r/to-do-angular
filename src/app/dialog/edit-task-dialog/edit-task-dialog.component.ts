@@ -22,8 +22,9 @@ export class EditTaskDialogComponent implements OnInit{
   }
      categories!: Category[];
      priorities!: Priority[];
+
      tmpCategory!: Category | undefined;
-     tmpPriority!: Priority | undefined;
+    tmpPriority!: Priority | undefined;
 
    tmpTitle!: string;
    dialogTitle!: string; // title of modal
@@ -38,6 +39,8 @@ export class EditTaskDialogComponent implements OnInit{
     console.log("this.dialogTitle", this.dialogTitle)
     console.log("this.task.title", this.task.title)
 
+    // инициализация начальных знанений (записывали в отдельные переменные
+    //чтобы можно было отменить изменения, а то будут сразу записываться в задачу)
     this.tmpCategory = this.task.category;
     this.tmpPriority = this.task.priority;
     console.log("this.task.category", this.task.category)
@@ -50,10 +53,15 @@ export class EditTaskDialogComponent implements OnInit{
     console.log(this.priorities)
   }
 
+  //нажали ОК
   onConfirm(): void {
+    // считываем все значения для сохранения в поля задачи
     this.task.title = this.tmpTitle ;
     this.task.category = this.tmpCategory;
     this.task.priority = this.tmpPriority;
+
+    //передаем добаволенную/измененную задачу в обработчик
+    //что с ним будут делать - уже на задача этого компонента
     this.dialogRef.close(this.task);
   }
 
