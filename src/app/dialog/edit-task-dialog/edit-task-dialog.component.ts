@@ -1,14 +1,16 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DataHandlerService } from '../../service/data-handler.service';
 import { Task } from '../../model/Task';
 import { Category } from '../../model/Category';
 import { Priority } from '../../model/Priority';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-edit-task-dialog',
   templateUrl: './edit-task-dialog.component.html',
-  styleUrl: './edit-task-dialog.component.css'
+  styleUrl: './edit-task-dialog.component.css',
+  encapsulation: ViewEncapsulation.None
 })
 export class EditTaskDialogComponent implements OnInit{
 
@@ -69,4 +71,28 @@ export class EditTaskDialogComponent implements OnInit{
     this.dialogRef.close(null);
   }
 
+  delete(){
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: '500px',
+      data: {
+        dialogTitle: 'Confirm the action',
+        message: `Are you sure to delete the task: "${this.task.title}" ?`
+      },
+      autoFocus: false
+    });
+
+    dialogRef.afterClosed().subscribe(result =>{
+      if(result){
+        this.dialogRef.close('delete');
+      }
+    })
+  }
+
+  activate(){
+    this.dialogRef.close('activate')
+  }
+  deactivate(){
+    this.dialogRef.close('complete')
+  }
 }

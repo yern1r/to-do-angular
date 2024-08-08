@@ -3,7 +3,7 @@
     <!-- Your dialog content here -->
     <p mat-dialog-title>{{ dialogTitle }}</p>
 
-    <mat-form-field style=" width:100%;">
+    <mat-form-field style="width: 100%">
       <mat-label>Name of task (necessary)</mat-label>
       <input
         #inputTitle
@@ -23,7 +23,7 @@
       </button>
     </mat-form-field>
 
-    <mat-form-field style="width: 100%;">
+    <mat-form-field style="width: 100%">
       <mat-label>Show Category</mat-label>
       <mat-select [(ngModel)]="tmpCategory">
         <mat-option [value]="null">No Category</mat-option>
@@ -33,7 +33,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field style="width: 100%;">
+    <mat-form-field style="width: 100%">
       <mat-label>Show Priority</mat-label>
       <mat-select [(ngModel)]="tmpPriority">
         <mat-option [value]="null">No Priority</mat-option>
@@ -42,19 +42,40 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-
   </mat-dialog-content>
 
   <mat-dialog-actions>
+    <div class="col-md-5 col-12">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onConfirm()"
+        [disabled]="inputTitle.value.trim().length == 0"
+      >
+        Save
+      </button>
+      <button mat-raised-button (click)="onCancel()">Cancel</button>
+    </div>
+
+    <div class="col-md-7 col-12 text-right">
+      <button
+        mat-button
+        *ngIf="task.completed"
+        (click)="activate()"
+        class="green"
+      >
+        Make Active
+      </button>
+      <button
+        mat-button
+        *ngIf="!task.completed"
+        (click)="deactivate()"
+        class="grey"
+      >
+        Make Deactive
+      </button>
+      <button mat-button class="red" (click)="delete()">Delete task</button>
+    </div>
     <!-- Your dialog actions here -->
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="onConfirm()"
-      [disabled]="inputTitle.value.trim().length == 0"
-    >
-      Save
-    </button>
-    <button mat-raised-button (click)="onCancel()">Cancel</button>
   </mat-dialog-actions>
 </div>

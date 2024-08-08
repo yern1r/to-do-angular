@@ -1,0 +1,8 @@
+.mat-mdc-dialog-panel{
+    width: 25% !important;
+    background-color: white !important;
+    position: fixed !important;
+    z-index: 5555 !important;
+    top: 50% !important;
+    right: 30% !important;
+}

@@ -10,7 +10,7 @@
     right: 350px; */
     /* position: absolute !important; */
     top: 50% !important;
-    right: 40% !important; 
+    right: 25% !important; 
     background-color:white;
 }
 
@@ -28,11 +28,14 @@
   width:100% !important;
 }
 
-::ng-deep .mat-mdc-select-panel{
+.mat-mdc-select-panel{
   width: 10% !important;
   background-color: white !important;
   position: fixed !important;
   z-index: 5555 !important;
   top: 50% !important;
   right: 40% !important;
+}
+.mat-mdc-form-field-flex{
+  margin-top: 5px;
 }
