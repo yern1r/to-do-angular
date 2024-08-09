@@ -22,13 +22,14 @@ export class EditTaskDialogComponent implements OnInit{
   ){
 
   }
-     categories!: Category[];
-     priorities!: Priority[];
+    categories!: Category[];
+    priorities!: Priority[];
 
-     tmpCategory!: Category | undefined;
+    tmpCategory!: Category | undefined;
     tmpPriority!: Priority | undefined;
 
    tmpTitle!: string;
+   tmpDate!: Date;
    dialogTitle!: string; // title of modal
    task!: Task; // task for edit/create
 

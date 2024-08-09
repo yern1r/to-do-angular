@@ -19,3 +19,17 @@
 .mat-form-field{
     width: 100%;
 }
+
+.red{
+    color:red !important;
+}
+
+.grey{
+    color:grey !important;
+}
+
+.green{
+    color:green !important;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

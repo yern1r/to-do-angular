@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild, viewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild, viewChild, ViewEncapsulation } from '@angular/core';
 import { DataHandlerService } from '../../../service/data-handler.service';
 import { Task } from '../../../model/Task';
 import { MatTableDataSource } from '@angular/material/table';
@@ -10,7 +10,8 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
-  styleUrl: './tasks.component.css'
+  styleUrl: './tasks.component.css',
+  encapsulation: ViewEncapsulation.None
 })
 export class TasksComponent implements OnInit {
 
@@ -32,6 +33,9 @@ export class TasksComponent implements OnInit {
     this.tasks = tasks;
     this.fillTable();
   }
+
+  @Output()
+  deleteTask = new EventEmitter<Task>();
 
   @Output()
   updateTask = new EventEmitter<Task>();
@@ -129,6 +133,20 @@ export class TasksComponent implements OnInit {
     
     dialogRef.afterClosed().subscribe( result => {
       //dealing with results
+      if(result === 'complete'){
+        task.completed = true;
+        this.updateTask.emit(task);
+      }
+
+      if(result === 'activate'){
+        task.completed = false;
+        this.updateTask.emit(task);
+      }
+
+      if(result === 'delete'){
+        this.deleteTask.emit(task);
+        return
+      }
 
       if (result as Task){
         this.updateTask.emit(task);

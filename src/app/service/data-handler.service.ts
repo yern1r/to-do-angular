@@ -46,6 +46,10 @@ export class DataHandlerService {
     return this.TaskDaoArray.update(task);
   }
 
+  deleteTask(id : number): Observable<Task>{
+    return this.TaskDaoArray.delete(id);
+  }
+
   // getCategories(): Category[]{
   //   return TestData.categories;
   // }

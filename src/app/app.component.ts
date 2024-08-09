@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataHandlerService } from './service/data-handler.service';
 import { Task } from './model/Task';
 import { Category } from './model/Category';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -58,5 +59,19 @@ export class AppComponent implements OnInit {
       });
     });
     console.log(task);
-    }
+  }
+
+  onDeleteTask(task : Task){
+    this.dataHandler.deleteTask(task.id).subscribe(() =>{
+      this.dataHandler.searchTasks(
+        this.selectedCategory,
+        //@ts-ignore
+        null,
+        null,
+        null
+      ).subscribe( tasks =>{
+        this.tasks = tasks;
+      });
+    });
+  }
 }
