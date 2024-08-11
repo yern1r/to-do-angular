@@ -29,7 +29,7 @@ export class EditTaskDialogComponent implements OnInit{
     tmpPriority!: Priority | undefined;
 
    tmpTitle!: string;
-   tmpDate!: Date;
+   tmpDate!: Date | undefined | null ;
    dialogTitle!: string; // title of modal
    task!: Task; // task for edit/create
 
@@ -46,7 +46,9 @@ export class EditTaskDialogComponent implements OnInit{
     //чтобы можно было отменить изменения, а то будут сразу записываться в задачу)
     this.tmpCategory = this.task.category;
     this.tmpPriority = this.task.priority;
+    this.tmpDate = this.task.date;
     console.log("this.task.category", this.task.category)
+    console.log("this.task.date;",this.task.date)
 
     this.dataHandler.getAllCategories().subscribe(items => 
       this.categories = items)
@@ -62,6 +64,7 @@ export class EditTaskDialogComponent implements OnInit{
     this.task.title = this.tmpTitle ;
     this.task.category = this.tmpCategory;
     this.task.priority = this.tmpPriority;
+    this.task.date = this.tmpDate;
 
     //передаем добаволенную/измененную задачу в обработчик
     //что с ним будут делать - уже на задача этого компонента
