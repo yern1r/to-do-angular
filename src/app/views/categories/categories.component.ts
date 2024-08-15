@@ -16,7 +16,9 @@ export class CategoriesComponent implements OnInit{
   @Output()
   selectCategory = new EventEmitter<Category>();
 
-  selectedCategory!: Category;
+  @Input()
+  //@ts-ignore
+  selectedCategory: Category;
 
   constructor(
     private dataHandler: DataHandlerService

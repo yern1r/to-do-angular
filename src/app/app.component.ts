@@ -15,7 +15,8 @@ export class AppComponent implements OnInit {
   tasks!: Task[];
   categories!: Category[];
 
-  private selectedCategory!: Category ;
+  //@ts-ignore
+  selectedCategory: Category = null;
 
   constructor(
     private dataHandler: DataHandlerService, //фасад для рабоы с данными
@@ -26,7 +27,9 @@ export class AppComponent implements OnInit {
     // this.dataHandler.getAllTasks().subscribe(tasks => this.tasks = tasks);
 
     this.dataHandler.getAllCategories().subscribe((categories => this.categories = categories));
-    // this.onSelectCategory(null);//show all tasks
+    //@ts-ignore
+    this.onSelectCategory(null);
+    //show all tasks
 
   }
 

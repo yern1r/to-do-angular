@@ -68,6 +68,7 @@
         <td
           class="col-category"
           *matCellDef="let task"
+          (click)="!task.completed && task.category && onSelectCategory(task.category)"
           [ngClass]="{
             completed: task.completed,
             novalue: task.category == null,
