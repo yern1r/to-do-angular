@@ -36,12 +36,24 @@
     cursor:pointer;
 }
 
-/* .mat-mdc-select-panel{
-    width: 5% !important;
-    background-color: white !important;
-    position: fixed !important;
-    z-index: 5555 !important;
-    top: 74% !important;
-    right: 18% !important;
-    border: 1px solid black
-} */
+.delete-icon{
+    cursosr: pointer;
+    color: #EA6561 !important;
+    font-size:18px;
+    margin-left:3px;
+    margin-right:3px;
+}
+
+.edit-icon{
+    cursosr: pointer;
+    color: #9A9A9A !important;
+    font-size:18px;
+    margin-left:3px;
+    margin-right:3px;
+}
+
+.mat-header-cell{
+    color: #9C27B0 !important;
+    font-size:1.063rem;
+    font-weiefht:normal;
+}

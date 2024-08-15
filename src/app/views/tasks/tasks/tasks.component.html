@@ -24,8 +24,13 @@
 
       <ng-container matColumnDef="title">
         <th *matHeaderCellDef mat-header-cell mat-sort-header>Name</th>
-        <td class="col-title pointer" *matCellDef="let task" [class.completed]="task.completed" mat-cell
-        (click)="openEditTaskDialog(task)">
+        <td
+          class="col-title pointer"
+          *matCellDef="let task"
+          [class.completed]="task.completed"
+          mat-cell
+          (click)="openEditTaskDialog(task)"
+        >
           {{ task.title }}
         </td>
       </ng-container>
@@ -38,9 +43,9 @@
           [ngClass]="{ completed: task.completed, novalue: task.date == null }"
           mat-cell
         >
-        <!-- {{ task.date ? (task.date | date:'medium') : 'No date' }} -->
-        {{ task.date | taskDate }}
-      </td>
+          <!-- {{ task.date ? (task.date | date:'medium') : 'No date' }} -->
+          {{ task.date | taskDate }}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="priority">
@@ -74,19 +79,61 @@
         </td>
       </ng-container>
 
+      <ng-container matColumnDef="operations">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td
+          class="col-operations"
+          mat-cell
+          *matCellDef="let task"
+          [class.completed]="task.completed"
+        >
+          <button
+            mat-icon-button
+            (click)="openDeleteDialog(task)"
+            class="delete-icon"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            (click)="openEditTaskDialog(task)"
+            class="edit-icon"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td
+          class="col-select text-right"
+          mat-cell
+          *matCellDef="let task"
+          [class.completed]="task.completed"
+        >
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="$event ? onToggleStatus(task) : null"
+            [checked]="task.completed"
+          >
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
       <!-- title header of table-->
       <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
       <!-- title rows of table-->
       <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[10,20,50,100]" showFirstLastButtons></mat-paginator>
-
+    <mat-paginator
+      [pageSizeOptions]="[10, 20, 50, 100]"
+      showFirstLastButtons
+    ></mat-paginator>
   </div>
 
   <div *ngIf="tasks && tasks.length == 0">
-    <p class="not-found">
-        Nothing found
-    </p>
+    <p class="not-found">Nothing found</p>
   </div>
 </div>

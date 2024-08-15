@@ -20,6 +20,9 @@ import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.c
 import {MatCalendar, MatDatepickerModule} from '@angular/material/datepicker';
 import { TaskDatePipe } from './pipe/task-date.pipe';
 import { registerLocaleData } from '@angular/common';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
+
 import localeRu from '@angular/common/locales/ru'
 registerLocaleData(localeRu);
 @NgModule({
@@ -48,7 +51,8 @@ registerLocaleData(localeRu);
     MatOptionModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatCalendar
+    MatCalendar,
+    MatCheckboxModule
   ],
   providers: [],
   //@ts-ignore
