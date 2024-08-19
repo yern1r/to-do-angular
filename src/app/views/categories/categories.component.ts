@@ -20,6 +20,7 @@ export class CategoriesComponent implements OnInit{
   //@ts-ignore
   selectedCategory: Category;
 
+  indexMouseMove:any;
   constructor(
     private dataHandler: DataHandlerService
   ){
@@ -36,7 +37,7 @@ export class CategoriesComponent implements OnInit{
     // console.log(this.categories);
   }
 
-  showTaskByCategory(category : Category) : void{
+  showTaskByCategory(category : Category | null) : void{
     // this.selectedCategory = category;
     // this.dataHandler.fillTasksByCategory(category);
 
@@ -46,10 +47,19 @@ export class CategoriesComponent implements OnInit{
     }
 
     //soxranyaem vybranuu category
+    //@ts-ignore
     this.selectedCategory = category;
 
     //vyzyvaem vnewniy obrabotchik i peredaem tuda vybrannuu category
     this.selectCategory.emit(this.selectedCategory);
   }
+
+  showEditionIcon(index: number | null){
+    this.indexMouseMove = index;
+  }
+
+   openEditDialog(category : Category){
+    console.log(category.title)
+   }
 
 }
